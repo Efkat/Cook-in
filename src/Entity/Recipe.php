@@ -40,6 +40,10 @@ class Recipe
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'recipes')]
     private Collection $Tags;
 
+    #[ORM\ManyToOne(inversedBy: 'Recipes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -173,6 +177,18 @@ class Recipe
     public function removeTag(Tag $tag): self
     {
         $this->Tags->removeElement($tag);
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
