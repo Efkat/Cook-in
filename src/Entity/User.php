@@ -42,6 +42,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->Recipes = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->username;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +101,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
+    //TODO : Hash password !
     public function setPassword(string $password): self
     {
         $this->password = $password;
