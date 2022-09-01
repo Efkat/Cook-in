@@ -1,1 +1,14 @@
 {% extends "@EasyAdmin/page/content.html.twig" %}
+{% block page_content %}
+    <h1>Bienvenue sur le dashboard de Cook'In ! 🍳</h1>
+    <hr>
+    <div>
+        <ul>
+            <li>Number of Users : {{ users }}</li>
+            <li>Number of Recipes : {{ recipes }}</li>
+            <li>Number of Tags : {{ tags }} </li>
+            <li>Number of Comments : {{ comments }}</li>
+        </ul>
+
+    </div>
+{% endblock %}
