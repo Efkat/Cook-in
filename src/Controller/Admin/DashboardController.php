@@ -42,8 +42,6 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-
-        //dd($this->userRepository->getNumbersOfUsers());
         return $this->render('admin/dashboard.html.twig', [
             "users" => $this->userRepository->getNumbersOfUsers(),
             "recipes" => $this->recipeRepository->getNumbersOfRecipes(),
@@ -69,8 +67,5 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::section('Recipes');
             yield MenuItem::linkToCrud("Recipes", "fa fa-book", Recipe::class );
             yield MenuItem::linkToCrud("Tags", "fa fa-tag", Tag::class);
-
-
-
     }
 }
