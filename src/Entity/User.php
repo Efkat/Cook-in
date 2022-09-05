@@ -103,7 +103,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    //TODO : Hash password !
     public function setPassword(string $password): self
     {
         $this->password = $password;
