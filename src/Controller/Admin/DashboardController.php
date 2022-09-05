@@ -2,21 +2,21 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Comment;
-use App\Entity\Recipe;
 use App\Entity\Tag;
 use App\Entity\User;
-use App\Repository\CommentRepository;
-use App\Repository\RecipeRepository;
+use App\Entity\Recipe;
+use App\Entity\Comment;
+use Doctrine\ORM\EntityManager;
 use App\Repository\TagRepository;
 use App\Repository\UserRepository;
+use App\Repository\RecipeRepository;
+use App\Repository\CommentRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
-use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManager;
+use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {

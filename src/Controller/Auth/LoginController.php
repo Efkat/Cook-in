@@ -22,4 +22,10 @@ class LoginController extends AbstractController
             'title' => "Connexion"
         ]);
     }
+
+    #[Route('/logout', name: 'app_logout')]
+    public function logOut(): void
+    {
+        //Blank function, logout is managed with symfony
+    }
 }
