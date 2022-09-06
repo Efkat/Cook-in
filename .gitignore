@@ -18,6 +18,7 @@
 /phpunit.xml
 .phpunit.result.cache
 /public/test-coverage
+./test-coverage
 ###< phpunit/phpunit ###
 
 ###> phpstorm ###
