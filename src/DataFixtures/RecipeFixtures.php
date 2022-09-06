@@ -25,8 +25,8 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
             }
 
             $recipe = new Recipe();
-            $recipe->setTitle($faker->title);
-            $recipe->setContent($faker->text);
+            $recipe->setTitle($faker->title());
+            $recipe->setContent($faker->text());
             $recipe->setIngredients($ingredients);
             $recipe->setPreparationTime($faker->numberBetween(5,60));
             $recipe->setCookingTime($faker->numberBetween(15,120));
