@@ -43,7 +43,7 @@ class RecipeRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('recipe')
             ->where('recipe.Title LIKE :recipeName')
-            ->setParameter('recipeName', $recipeName)
+            ->setParameter('recipeName','%'.$recipeName.'%')
             ->getQuery()
             ->getResult();
     }
