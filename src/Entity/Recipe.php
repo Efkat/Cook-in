@@ -23,9 +23,6 @@ class Recipe
     private ?string $Content = null;
 
     #[ORM\Column]
-    private array $Ingredients = [];
-
-    #[ORM\Column]
     private ?int $PreparationTime = null;
 
     #[ORM\Column]
@@ -83,18 +80,6 @@ class Recipe
     public function setContent(string $Content): self
     {
         $this->Content = $Content;
-
-        return $this;
-    }
-
-    public function getIngredients(): array
-    {
-        return $this->Ingredients;
-    }
-
-    public function setIngredients(array $Ingredients): self
-    {
-        $this->Ingredients = $Ingredients;
 
         return $this;
     }
