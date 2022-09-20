@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
