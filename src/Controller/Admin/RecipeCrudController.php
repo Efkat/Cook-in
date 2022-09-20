@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 
@@ -34,10 +35,11 @@ class RecipeCrudController extends AbstractCrudController
             AssociationField::new('user'),
             AssociationField::new('Tags'),
             TextEditorField::new('content'),
-            ArrayField::new('ingredients'),
+            //ArrayField::new('ingredients'),
             IntegerField::new('preparation_time'),
             IntegerField::new('cooking_time'),
-            ChoiceField::new('difficulty')->setChoices($this->stars)
+            ChoiceField::new('difficulty')->setChoices($this->stars),
+            SlugField::new('slug')->setTargetFieldName("title")
         ];
     }
 }
