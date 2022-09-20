@@ -24,6 +24,10 @@ class RecipeRepository extends ServiceEntityRepository
 
     public function add(Recipe $entity, bool $flush = false): void
     {
+        $slugger = new AsciiSlugger("fr_FR");
+
+        $entity->setSlug($slugger->slug($entity->getTitle()));
+
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
