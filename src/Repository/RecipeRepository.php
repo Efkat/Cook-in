@@ -39,6 +39,15 @@ class RecipeRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllLike(string $recipeName): array
+    {
+        return $this->createQueryBuilder('recipe')
+            ->where('recipe.Title LIKE :recipeName')
+            ->setParameter('recipeName','%'.$recipeName.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @return integer
      *

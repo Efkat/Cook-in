@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                {{ recipe.title }} - {{ recipe.difficulty }}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
