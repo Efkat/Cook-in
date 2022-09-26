@@ -7,4 +7,14 @@
         <li>Cuisson : {{ recipe.cookingTime }} minutes</li>
     </ul>
     {{ recipe.content|raw }}
+    <hr>
+    {% if comments %}
+        {% for comment in comments %}
+        <div>
+            <p>{{ comment.author }}</p>
+            <p>{{ comment.content|raw }}</p>
+        </div>
+            <hr>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
