@@ -44,10 +44,22 @@ class Recipe
     #[ORM\Column(length: 255)]
     private ?string $Slug = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Description = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $modifiedAt = null;
+
     public function __construct()
     {
+        $createdAt = new \DateTimeImmutable();
         $this->comments = new ArrayCollection();
         $this->Tags = new ArrayCollection();
+        $this->createdAt = $createdAt;
+        $this->modifiedAt = $createdAt;
     }
 
     public function __toString(): string
@@ -194,6 +206,42 @@ class Recipe
     public function setSlug(string $Slug): self
     {
         $this->Slug = $Slug;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(?string $Description): self
+    {
+        $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifiedAt(): ?\DateTimeImmutable
+    {
+        return $this->modifiedAt;
+    }
+
+    public function setModifiedAt(\DateTimeImmutable $modifiedAt): self
+    {
+        $this->modifiedAt = $modifiedAt;
 
         return $this;
     }
