@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h1>{{ recipe.title }}</h1>
-    <p>Difficulté : {{ recipe.difficulty }}</p>
+    <p>Difficulté : {{ recipe.difficulty }} - Par {{ recipe.user }}</p>
     <ul>
         <li>Preparation : {{ recipe.preparationTime }} minutes</li>
         <li>Cuisson : {{ recipe.cookingTime }} minutes</li>
