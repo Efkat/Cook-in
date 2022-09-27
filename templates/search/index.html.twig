@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {% if recipes %}
     <ul>
         {% for recipe in recipes %}
             <li>
@@ -7,5 +8,8 @@
             </li>
         {% endfor %}
     </ul>
+    {% else %}
+        <p>Aucune recette trouvée...</p>
+    {% endif %}
 
 {% endblock %}
