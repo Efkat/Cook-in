@@ -55,11 +55,8 @@ class Recipe
 
     public function __construct()
     {
-        $createdAt = new \DateTimeImmutable();
         $this->comments = new ArrayCollection();
         $this->Tags = new ArrayCollection();
-        $this->createdAt = $createdAt;
-        $this->modifiedAt = $createdAt;
     }
 
     public function __toString(): string
