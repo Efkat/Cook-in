@@ -17,4 +17,8 @@
             <hr>
         {% endfor %}
     {% endif %}
+
+    {%if form %}
+        {{ form(form) }}
+    {% endif %}
 {% endblock %}

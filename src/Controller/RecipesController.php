@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Recipe;
+use App\Form\CommentRecipeType;
 use App\Repository\CommentRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,7 +29,7 @@ class RecipesController extends AbstractController
     }
 
     #[Route('/recipe/{slug}', name: 'app_recipe_view')]
-    public function recipeView(ManagerRegistry $managerRegistry, String $slug): Response
+    public function recipeView(ManagerRegistry $managerRegistry, String $slug, Request $request): Response
     {
         $recipeRepo = new RecipeRepository($managerRegistry);
         $recipe = $recipeRepo->findOneBy(['Slug' => $slug]);
@@ -34,12 +37,34 @@ class RecipesController extends AbstractController
         $commentRepo = new CommentRepository($managerRegistry);
         $comments = $commentRepo->findBy(['Recipe' => $recipe]);
 
-        if($recipe){
+        if($this->getUser()){
+            $comment = new Comment();
+            $commentForm = $this->createForm(CommentRecipeType::class, $comment);
+            $commentFormView = $commentForm->createView();
 
+            $manager = $managerRegistry->getManager();
+
+            $commentForm->handleRequest($request);
+            if($commentForm->isSubmitted() && $commentForm->isValid()){
+                $comment = $commentForm->getData();
+                $comment->setAuthor($this->getUser())
+                    ->setRecipe($recipe);
+
+                $manager->persist($comment);
+                $manager->flush();
+
+                return $this->redirectToRoute("app_recipe_view", ["slug"=> $slug]);
+            }
+        }else{
+            $commentFormView = null;
+        }
+
+        if($recipe){
             return $this->render("recipes/viewRecipe.html.twig", [
                 "title" => $recipe->getTitle(),
                 "recipe" => $recipe,
-                "comments" => $comments
+                "comments" => $comments,
+                "form" => $commentFormView
             ]);
         }else{
             return $this->redirectToRoute('app_index');
