@@ -53,6 +53,9 @@ class Recipe
     #[ORM\Column]
     private ?\DateTimeImmutable $modifiedAt = null;
 
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $PictureFilename = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -239,6 +242,18 @@ class Recipe
     public function setModifiedAt(\DateTimeImmutable $modifiedAt): self
     {
         $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    public function getPictureFilename(): ?string
+    {
+        return $this->PictureFilename;
+    }
+
+    public function setPictureFilename(?string $PictureFilename): self
+    {
+        $this->PictureFilename = $PictureFilename;
 
         return $this;
     }

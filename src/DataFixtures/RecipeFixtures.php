@@ -30,6 +30,8 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
             $recipe->setDifficulty($faker->numberBetween(1,5));
             $recipe->setUser($user);
             $recipe->setSlug($slugger->slug($recipe->getTitle()));
+            $recipe->setCreatedAt(new \DateTimeImmutable());
+            $recipe->setModifiedAt(new \DateTimeImmutable());
 
 
             $manager->persist($recipe);
