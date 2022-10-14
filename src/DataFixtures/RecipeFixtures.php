@@ -21,16 +21,10 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         $userRepository = $manager->getRepository(User::class);
         $users = $userRepository->findAll();
 
-        $ingredients[] = array();
-        for($index = 0; $index<5; $index++){
-            $ingredients[] = [$faker->numberBetween(1, 500) . $faker->word];
-        }
-
         foreach ($users as $user){
             $recipe = new Recipe();
             $recipe->setTitle($faker->title());
             $recipe->setContent($faker->text());
-            $recipe->setIngredients($ingredients);
             $recipe->setPreparationTime($faker->numberBetween(5,60));
             $recipe->setCookingTime($faker->numberBetween(15,120));
             $recipe->setDifficulty($faker->numberBetween(1,5));
