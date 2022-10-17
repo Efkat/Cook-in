@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Recipe;
 use App\Form\CommentRecipeType;
+use App\Form\RecipeType;
 use App\Repository\CommentRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -69,5 +70,16 @@ class RecipesController extends AbstractController
         }else{
             return $this->redirectToRoute('app_index');
         }
+    }
+
+    #[Route('/recipes/create', name: "app_recipe_form")]
+    public function recipeForm(Request $request): Response
+    {
+        $recipeForm = $this->createForm(RecipeType::class);
+
+        return $this->render('recipes/form.html.twig',[
+            'title' => "Création d'une recette",
+            "form" => $recipeForm->createView()
+        ]);
     }
 }

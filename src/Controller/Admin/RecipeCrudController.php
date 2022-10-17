@@ -39,7 +39,8 @@ class RecipeCrudController extends AbstractCrudController
             IntegerField::new('preparation_time'),
             IntegerField::new('cooking_time'),
             ChoiceField::new('difficulty')->setChoices($this->stars),
-            SlugField::new('slug')->setTargetFieldName("title")
+            SlugField::new('slug')->setTargetFieldName("title"),
+            TextField::new('PictureFilename')
         ];
     }
 }
