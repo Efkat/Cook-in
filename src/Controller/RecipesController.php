@@ -72,15 +72,15 @@ class RecipesController extends AbstractController
         }
     }
 
-    #[Route('/recipes/create', name: "app_recipe_form")]
-    public function recipeForm(Request $request): Response
+    #[Route('/recipes/create', name: "app_recipe_create")]
+    public function new(Request $request): Response
     {
         $recipeForm = $this->createForm(RecipeType::class);
 
         $recipeForm->handleRequest($request);
         if($recipeForm->isSubmitted() && $recipeForm->isValid()){
             $recipe = $recipeForm->getData();
-            dd($recipe);
+            dd($request);
         }
 
         return $this->render('recipes/form.html.twig',[
