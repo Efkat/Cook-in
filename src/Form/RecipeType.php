@@ -7,7 +7,9 @@ namespace App\Form;
 use App\Entity\Tag;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -61,6 +63,7 @@ class RecipeType extends AbstractType{
                 'multiple' => true
             ])
             ->add('preparationTime', IntegerType::class)
-            ->add('cookingTime', IntegerType::class);
+            ->add('cookingTime', IntegerType::class)
+            ->add('Submit', SubmitType::class);
     }
 }

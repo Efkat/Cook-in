@@ -77,6 +77,12 @@ class RecipesController extends AbstractController
     {
         $recipeForm = $this->createForm(RecipeType::class);
 
+        $recipeForm->handleRequest($request);
+        if($recipeForm->isSubmitted() && $recipeForm->isValid()){
+            $recipe = $recipeForm->getData();
+            dd($recipe);
+        }
+
         return $this->render('recipes/form.html.twig',[
             'title' => "Création d'une recette",
             "form" => $recipeForm->createView()
