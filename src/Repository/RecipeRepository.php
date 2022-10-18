@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @extends ServiceEntityRepository<Recipe>
@@ -23,6 +24,10 @@ class RecipeRepository extends ServiceEntityRepository
 
     public function add(Recipe $entity, bool $flush = false): void
     {
+        $slugger = new AsciiSlugger("fr_FR");
+
+        $entity->setSlug($slugger->slug($entity->getTitle()));
+
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {

@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {% if recipes %}
     <ul>
         {% for recipe in recipes %}
             <li>
-                {{ recipe.title }} - {{ recipe.difficulty }}
+                <a href="{{ path('app_recipe_view', {slug: recipe.slug}, false) }}">{{ recipe.title }}</a> - {{ recipe.difficulty }}
             </li>
         {% endfor %}
     </ul>
+    {% else %}
+        <p>Aucune recette trouvée...</p>
+    {% endif %}
 
 {% endblock %}

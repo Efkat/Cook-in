@@ -23,9 +23,6 @@ class Recipe
     private ?string $Content = null;
 
     #[ORM\Column]
-    private array $Ingredients = [];
-
-    #[ORM\Column]
     private ?int $PreparationTime = null;
 
     #[ORM\Column]
@@ -43,6 +40,21 @@ class Recipe
     #[ORM\ManyToOne(inversedBy: 'Recipes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Slug = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Description = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $modifiedAt = null;
+
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $PictureFilename = null;
 
     public function __construct()
     {
@@ -80,18 +92,6 @@ class Recipe
     public function setContent(string $Content): self
     {
         $this->Content = $Content;
-
-        return $this;
-    }
-
-    public function getIngredients(): array
-    {
-        return $this->Ingredients;
-    }
-
-    public function setIngredients(array $Ingredients): self
-    {
-        $this->Ingredients = $Ingredients;
 
         return $this;
     }
@@ -194,6 +194,66 @@ class Recipe
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->Slug;
+    }
+
+    public function setSlug(string $Slug): self
+    {
+        $this->Slug = $Slug;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(?string $Description): self
+    {
+        $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModifiedAt(): ?\DateTimeImmutable
+    {
+        return $this->modifiedAt;
+    }
+
+    public function setModifiedAt(\DateTimeImmutable $modifiedAt): self
+    {
+        $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    public function getPictureFilename(): ?string
+    {
+        return $this->PictureFilename;
+    }
+
+    public function setPictureFilename(?string $PictureFilename): self
+    {
+        $this->PictureFilename = $PictureFilename;
 
         return $this;
     }
