@@ -32,7 +32,7 @@ class RecipeType extends AbstractType{
                     'placeholder' => ""
                 ]
             ])
-            ->add('PictureFilename', FileType::class, [
+            ->add('picture', FileType::class, [
                 'label' => "Image de la recette : ",
                 'mapped' => false,
                 'required' => false,
